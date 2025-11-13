@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { WalletConnectProvider } from "@/contexts/WalletConnectContext";
+import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Token Streaming",
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <WalletConnectProvider>
+        <Providers>
           {children}
-        </WalletConnectProvider>
+        </Providers>
       </body>
     </html>
   );

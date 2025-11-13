@@ -2,12 +2,13 @@
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import Client from "@walletconnect/sign-client";
-import type { SignClient } from "@walletconnect/sign-client/dist/types/client";
 import type { SessionTypes } from "@walletconnect/types";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 
+type SignClientType = Awaited<ReturnType<typeof Client.init>>;
+
 interface WalletConnectContextType {
-  client: SignClient | undefined;
+  client: SignClientType | undefined;
   session: SessionTypes.Struct | undefined;
   chain: string | undefined;
   address: string | undefined;
@@ -29,12 +30,14 @@ const WalletConnectContext = createContext<WalletConnectContextType>({
 export const useWalletConnect = () => useContext(WalletConnectContext);
 
 export function WalletConnectProvider({ children }: { children: ReactNode }) {
-  const [client, setClient] = useState<SignClient | undefined>(undefined);
+  const [client, setClient] = useState<SignClientType | undefined>(undefined);
   const [session, setSession] = useState<SessionTypes.Struct | undefined>(undefined);
   const [chain, setChain] = useState<string | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const initClient = async () => {
       try {
         const c = await Client.init({
@@ -65,7 +68,7 @@ export function WalletConnectProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const { uri, approval } = await client.connect({
+      const result = await client.connect({
         pairingTopic: undefined,
         requiredNamespaces: {
           stacks: {
@@ -80,6 +83,7 @@ export function WalletConnectProvider({ children }: { children: ReactNode }) {
           },
         },
       });
+      const { uri, approval } = result;
 
       if (uri) {
         QRCodeModal.open(uri, () => {});
