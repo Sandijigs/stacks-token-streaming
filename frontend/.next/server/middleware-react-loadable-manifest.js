@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"components/providers.tsx -> @/contexts/WalletConnectContext":{"id":4222,"files":["static/chunks/67-3df133eaf8c7549f.js","static/chunks/222.e342cfbf808a3483.js"]}}';
