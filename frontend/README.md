@@ -4,8 +4,28 @@ A Next.js frontend for the Stacks Token Streaming protocol with WalletConnect in
 
 ## Features
 
-- **WalletConnect Support**: Connect mobile wallets securely using WalletConnect protocol
-- **Token Streaming**: (Implementation pending - connect to stream.clar contract)
+- **WalletConnect Integration**: Connect mobile wallets securely using WalletConnect SDK v2 (Project ID: 6b87a3c69cbd8b52055d7aef763148d6)
+- **Mobile Wallet Support**: Compatible with Xverse, Leather, and other Stacks wallets
+- **Token Streaming**: Stream tokens continuously over time with blockchain verification
+- **Dual Connection Options**: Stacks Connect for desktop, WalletConnect for mobile
+
+## WalletConnect Integration
+
+This project features full **WalletConnect SDK v2** integration:
+
+### Key Benefits
+- **📱 Mobile-Native**: Designed for mobile wallet connections
+- **🔒 Secure**: End-to-end encrypted wallet communication
+- **⚡ Fast**: QR code scanning for instant pairing
+- **🔄 Persistent**: Session management with auto-reconnection
+- **🌐 Universal**: Works with all WalletConnect-compatible Stacks wallets
+
+### How It Works
+1. User clicks "Connect WalletConnect" button
+2. QR code modal appears
+3. User scans with mobile wallet (Xverse, Leather, etc.)
+4. Wallet approves connection
+5. User can now interact with streaming contracts
 
 ## Getting Started
 
